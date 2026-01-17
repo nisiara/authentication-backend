@@ -1,0 +1,60 @@
+
+
+GET http://localhost:3001/
+
+### POST REGISTRO EXITOSO
+POST http://localhost:3001/api/register
+Content-Type: application/json
+
+{
+  "password": "!12Abcdefg",
+	"email": "nicolas@mail.com"
+}
+
+### POST REGISTRO ERROR (USUARIO YA REGISTRADO)
+POST http://localhost:3001/api/register
+Content-Type: application/json
+
+{
+  "password": "!12Abcdefg",
+	"email": "nicolas@mail.com"
+}
+
+### POST REGISTRO ERROR (EMAIL INCORRECTO)
+POST http://localhost:3001/api/register
+Content-Type: application/json
+
+{
+  "password": "!12Abcdefg",
+	"email": "nicolasmail.com"
+}
+
+
+### LOGIN INCORRECTO (NO ES LA CONTRASEÑA)
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+  "password": "!12Abcdefg345",
+	"email": "nicolas@mail.com"
+}
+
+### LOGIN CORRECTO
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+  "password": "!12Abcdefg",
+	"email": "nicolas@mail.com"
+}
+
+### USUARIO LOAGUEADO (SIN TOKEN)
+GET http://localhost:3001/api/me
+
+### USUARIO LOAGUEADO (TOKEN INVALIDO)
+GET http://localhost:3001/api/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI
+
+### USUARIO LOAGUEADO EXITOSO (TOKEN VALIDO)
+GET http://localhost:3001/api/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3MzdjNWJkLWQ1OTgtNGNiNS05YjRkLTFjNzZjNzI4NGIyZCIsImVtYWlsIjoibmljb2xhc0BtYWlsLmNvbSIsImlhdCI6MTc2ODYyODcwNiwiZXhwIjoxNzY4NjMyMzA2fQ.ZNjlrfLkZsBpHhQZL8FW85i0LySbeXZp1ogvc5O8EH8
