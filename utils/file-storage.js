@@ -1,17 +1,19 @@
 const fs = require('fs');
 const path = require('path'); 
 
-// const USERS_FILE = path.join(__dirname, '..', data, 'users.json');
 const USERS_FILE = path.join(__dirname, '..', 'data', 'users.json');
 
 
 function readUsers() {
   try {
-    const users = fs.readFileSync(USERS_FILE, 'utf-8');
-    return JSON.parse(users);
+    const data = fs.readFileSync(USERS_FILE, 'utf-8');
+    if (!data || data.trim() === '') {
+      return [];
+    }
+    return JSON.parse(data);
   } catch (error) {
     console.error('Error al leer los usuarios del archivo users.json', error);
-    return []
+    return [];
   }
 }
 

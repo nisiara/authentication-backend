@@ -16,7 +16,7 @@ function sendSuccessResponse(res, message, data = {}) {
 
 function sendErrorResponse(res, message, statusCode) {
   res.status(statusCode).json({
-    success: "error",
+    success: false,
     message,
     time: new Date().toISOString(),
     taskId: uuid(),
@@ -25,12 +25,12 @@ function sendErrorResponse(res, message, statusCode) {
 
 async function registerUser(req, res) {
   try {
-    const { email, password } = req.body;
+    const { name, lastName, email, password } = req.body;
     const validation = validRegisterBody(req.body);
     if (!validation.isValid) {
       return sendErrorResponse(res, validation.errors.join(", "), 400);
     }
-    const newUser = await authenticationService.registerUser(email, password);
+    const newUser = await authenticationService.registerUser(name, lastName, email, password);
     sendSuccessResponse(res, "Usuario registrado exitosamente", { user: newUser });
   } catch (error) {
     if (error.message === "El usuario ya está registrado.") {

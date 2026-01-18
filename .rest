@@ -1,34 +1,54 @@
 
-
+### GET VERIFICAR SERVIDOR
 GET http://localhost:3001/
 
-### POST REGISTRO EXITOSO
+### POST REGISTRO INVALIDO (FALTAN CAMPOS)
 POST http://localhost:3001/api/register
 Content-Type: application/json
 
 {
+  "lastName": "Silva",
   "password": "!12Abcdefg",
 	"email": "nicolas@mail.com"
 }
+
+### POST REGISTRO INVALIDO (EMAIL INCORRECTO) 
+POST http://localhost:3001/api/register
+Content-Type: application/json
+
+{
+  "name": "Nicolas",
+  "lastName": "Silva",
+	"email": "nicolasmail.com",
+  "password": "!12Abcdefg",
+  "confirmPassword": "!12Abcdefg"
+}
+
+
+### POST REGISTRO VALIDO
+POST http://localhost:3001/api/register
+Content-Type: application/json
+
+{
+  "name": "Nicolas",
+  "lastName": "Silva",
+	"email": "nicolas@mail.com",
+  "password": "!12Abcdefg",
+  "confirmPassword": "!12Abcdefg"
+}
+
 
 ### POST REGISTRO ERROR (USUARIO YA REGISTRADO)
 POST http://localhost:3001/api/register
 Content-Type: application/json
 
 {
+  "name": "Nicolas",
+  "lastName": "Silva",
+	"email": "nicolas@mail.com",
   "password": "!12Abcdefg",
-	"email": "nicolas@mail.com"
+  "confirmPassword": "!12Abcdefg"
 }
-
-### POST REGISTRO ERROR (EMAIL INCORRECTO)
-POST http://localhost:3001/api/register
-Content-Type: application/json
-
-{
-  "password": "!12Abcdefg",
-	"email": "nicolasmail.com"
-}
-
 
 ### LOGIN INCORRECTO (NO ES LA CONTRASEÑA)
 POST http://localhost:3001/api/login

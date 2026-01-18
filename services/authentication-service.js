@@ -5,7 +5,7 @@ const uuid = require('uuid').v4;
 const { readUsers, writeUsers } = require('../utils/file-storage');
 
 
-async function registerUser(email, password) {
+async function registerUser(name, lastName, email, password) {
   const users = readUsers();
 
   const existingUser = users.find( user => user.email === email);
@@ -16,6 +16,8 @@ async function registerUser(email, password) {
   const hashedPassword = await bycrypt.hash(password, 10);
   const newUser = {
     id: uuid(),
+    name,
+    lastName,
     email,
     password: hashedPassword,
     createdAt: new Date().toISOString(),
@@ -24,7 +26,7 @@ async function registerUser(email, password) {
   users.push(newUser);
   writeUsers(users);
 
-  return { id: newUser.id, email: newUser.email, createdAt: newUser.createdAt };
+  return { id: newUser.id, name: newUser.name, lastName: newUser.lastName, email: newUser.email, createdAt: newUser.createdAt };
 }
 
 async function loginUser(email, password) {
