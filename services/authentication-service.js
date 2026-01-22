@@ -14,6 +14,7 @@ async function registerUser(name, lastName, email, password) {
   }
 
   const hashedPassword = await bycrypt.hash(password, 10);
+  
   const newUser = {
     id: uuid(),
     name,
@@ -34,12 +35,12 @@ async function loginUser(email, password) {
 
   const user = users.find( user => user.email === email);
   if (!user) {
-    throw new Error('Correo electrónico o contraseña incorrectos.');
+    throw new Error('Usuario no encontrado.');
   }
 
   const isPasswordValid = await bycrypt.compare(password, user.password);
   if (!isPasswordValid) {
-    throw new Error('Correo electrónico o contraseña incorrectos.');
+    throw new Error('Contraseña incorrecta.');
   }
 
   const token = jwt.sign(

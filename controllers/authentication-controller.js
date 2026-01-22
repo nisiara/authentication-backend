@@ -1,9 +1,6 @@
 const uuid = require("uuid").v4;
 const authenticationService = require("../services/authentication-service");
-const {
-  validRegisterBody,
-  validLoginBody,
-} = require("../utils/validation");
+const { validRegisterBody, validLoginBody} = require("../utils/validation");
 
 function sendSuccessResponse(res, message, data = {}) {
   res.json({
@@ -45,27 +42,33 @@ async function loginUser(req, res) {
   try {
     const { email, password } = req.body;
     const validation = validLoginBody(req.body);
+
     if (!validation.isValid) {
       return sendErrorResponse(res, validation.errors.join(", "), 400);
     }
-    const { token, user } = await authenticationService.loginUser(
-      email,
-      password,
-    );
-    sendSuccessResponse(res, "Inicio de sesión exitoso", { token, user });
-  } catch (error) {
-    sendErrorResponse(res, "Credenciales no válidas", 401);
+    const { token, user } = await authenticationService.loginUser(email, password)
+
+    sendSuccessResponse(res, "Inicio de sesión exitoso", { token, user })
+  } 
+  catch (error) {
+    if( error.message === "Usuario no encontrado.") {
+      sendErrorResponse(res, "Usuario no encontrado", 404);
+    } else if (error.message === "Contraseña incorrecta.") {
+      sendErrorResponse(res, "Contraseña incorrecta.", 401);
+    } else {
+      sendErrorResponse(res, "Error en el servidor", 500);
+    }
   }
 }
 
 async function getMe(req, res) {
   try {
-    const userMe = await authenticationService.getUserById(req.user.id);
-    sendSuccessResponse(res, "Usuario obtenido exitosamente", { user: userMe });
+    const loguedUser = await authenticationService.getUserById(req.user.id);
+    sendSuccessResponse(res, "Usuario obtenido exitosamente", { user: loguedUser });
   } catch (error) {
-    if (error.message === "Usuario no encontrado") {
+    if (error.message === "Usuario no encontrado.") {
       return sendErrorResponse(res, error.message, 404);
-    } else sendErrorResponse(res, "Error interno del servidor", 500);
+    } else sendErrorResponse(res, "Error en el servidor", 500);
   }
 }
 
@@ -73,4 +76,4 @@ module.exports = {
   registerUser,
   loginUser,
   getMe,
-};
+}

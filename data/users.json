@@ -6,5 +6,13 @@
     "email": "nisiara@gmail.com",
     "password": "$2b$10$ywQvpDj16M61QMYavHAbXepiPo7k9wIbaRUEKi8vbQXiks/KfvSzm",
     "createdAt": "2026-01-17T16:52:37.314Z"
+  },
+  {
+    "id": "dfdb0d37-6e3b-4d49-84aa-6c652a3c7156",
+    "name": "Ruben",
+    "lastName": "Araneda",
+    "email": "ruara@gmail.com",
+    "password": "$2b$10$Wrc1HPr5X0.plWeqKpl1sO0/iD5xnNruNHfHooLpm0KnV6UC0jorG",
+    "createdAt": "2026-01-22T00:59:38.868Z"
   }
 ]
