@@ -45,6 +45,7 @@ async function loginUser(req, res) {
 
     if (!validation.isValid) {
       return sendErrorResponse(res, validation.errors.join(", "), 400);
+      
     }
     const { token, user } = await authenticationService.loginUser(email, password)
 
@@ -72,7 +73,27 @@ async function getMe(req, res) {
   }
 }
 
+async function gitHubCallback(req, res) {
+  try {
+    const { code } = req.body
+    if(!code) {
+      return sendErrorResponse(res, "Código de autorización no proporcionado", 400);
+    }
+    
+    const { token, user } = await authenticationService.loginWithGitHub(code);
+    sendSuccessResponse(res, "Inicio de sesión con GitHub exitoso", { token, user });
+  } 
+  catch (error) {
+    console.error("Error en gitHubCallback:", error.message);
+    if (error.message === "Credenciales de GitHub no configuradas.") {
+      return sendErrorResponse(res, error.message, 500);
+    }
+    sendErrorResponse(res, error.message || "Error en el servidor", 500);
+  }
+}
+
 module.exports = {
+  gitHubCallback,
   registerUser,
   loginUser,
   getMe,

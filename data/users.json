@@ -14,5 +14,14 @@
     "email": "ruara@gmail.com",
     "password": "$2b$10$Wrc1HPr5X0.plWeqKpl1sO0/iD5xnNruNHfHooLpm0KnV6UC0jorG",
     "createdAt": "2026-01-22T00:59:38.868Z"
+  },
+  {
+    "id": "66c443be-d7be-4db5-8265-52ead1d20046",
+    "name": "Nicolas Silva Araneda",
+    "lastName": "",
+    "email": "165214888@github.com",
+    "password": "",
+    "gitHubId": 165214888,
+    "createdAt": "2026-01-25T01:16:44.967Z"
   }
 ]
