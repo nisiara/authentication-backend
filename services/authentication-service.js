@@ -191,7 +191,8 @@ async function loginWithGitHub(code) {
       id: user.id, 
       email: user.email,
       name: user.name,
-      lastName: user.lastName
+      lastName: user.lastName,
+      gitHubId: user.gitHubId,
     } 
   }; 
 }
