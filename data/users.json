@@ -23,5 +23,13 @@
     "password": "",
     "gitHubId": 165214888,
     "createdAt": "2026-01-25T01:16:44.967Z"
+  },
+  {
+    "id": "24eea2b2-1ec1-4e6d-9795-4c0b15a7690c",
+    "name": "Mao",
+    "lastName": "Reyes",
+    "email": "pairy@gmail.com",
+    "password": "$2b$10$DrzAttXNxrLpjVy9gxw4Lu7c5pJjxZw6n/IWT6e9P.aOwmFOM8yEC",
+    "createdAt": "2026-01-26T15:00:11.887Z"
   }
 ]

@@ -1,6 +1,6 @@
 # Backend de Autenticación (Node.js/Express)
 
-Servicio de autenticación basado en JSON Web Tokens (JWT). Permite registrar usuarios, iniciar sesión y obtener el perfil del usuario autenticado. Los usuarios se persisten en un archivo local para facilitar el desarrollo.
+Servicio de autenticación basado en JSON Web Tokens (JWT). Permite registrar usuarios, iniciar sesión y obtener el perfil del usuario autenticado. Los usuarios se persisten en un archivo local para facilitar el desarrollo. Además se agrega otra vía de autenticación con OAuth usando la plataforma de GitHub
 
 ## 🎯 Características
 
@@ -23,12 +23,14 @@ Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 
 ```env
 PORT=3001
-JWT_SECRET=tu_clave_secreta_muy_segura_minimo_32_caracteres_cambiar
+JWT_SECRET=
+GITHUB_CLIENT_ID =
+GITHUB_CLIENT_SECRET = 
+GITHUB_AUTH_ACCESS_TOKEN = https://github.com/login/oauth/access_token
+GITHUB_AUTH_USER_URL = https://api.github.com/user
+GITHUB_REDIRECT_URI = http://localhost:5173/callback
 ```
 
-**Variables de entorno:**
-- `JWT_SECRET` (obligatorio): Clave secreta para firmar tokens JWT. Debe ser una cadena larga y segura.
-- `PORT` (opcional): Puerto en el que se ejecutará el servidor. Por defecto es `3001`.
 
 ## 🚀 Instalación y Ejecución
 
